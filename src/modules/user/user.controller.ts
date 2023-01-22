@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common'
+import { Body, Controller, Post } from '@nestjs/common'
 import { CurrentUser } from 'src/decorators'
 import { UserDto } from '../../dto'
-import { UserCreateDto, UserUpdateDto, UserUpdatePasswordDto } from './dto'
+import { UserCreateDto, UserUpdateDto } from './dto'
 import { UserService } from './user.service'
 
 @Controller('user')
@@ -22,8 +22,5 @@ export class UserController {
   public async find(@CurrentUser() user: UserDto,  @Body() data : {id?: string} ) {
     return await this.userService.find(user, data)
   }
-  // @Post('update_password')
-  // public async updatePassword(@CurrentUser() user: UserDto, @Body() data: EmployeeUpdatePasswordDto) {
-  //   return await this.employeeService.updatePassword(user, data)
-  // }
+  
 }

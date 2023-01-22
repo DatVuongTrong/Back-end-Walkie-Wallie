@@ -6,7 +6,7 @@ import { UserRepository } from 'src/repository'
 
 @Module({
   imports: [TypeOrmExModule.forCustomRepository([UserRepository])],
-  providers: [ UserService],
+  providers: [UserService],
   controllers: [UserController],
 })
 export class UserModule {}

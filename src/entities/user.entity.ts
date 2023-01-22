@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, UpdateDateColumn, Entity, OneToOne, JoinColumn } from 'typeorm'
+import { Column, CreateDateColumn, UpdateDateColumn, Entity, OneToOne, JoinColumn, ManyToOne, OneToMany } from 'typeorm'
 import { BaseEntity } from './base.entity'
-import { Location } from './location.entity'
+import { Location, Request } from './'
+
 
 @Entity()
 export class User extends BaseEntity{
@@ -48,6 +49,16 @@ export class User extends BaseEntity{
   @OneToOne(() => Location, (p) => p.user)
   @JoinColumn({ name: 'locationId', referencedColumnName: 'id' })
   location: Promise<Location>
+  
+
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  requestId: string
+  @OneToMany(() => Request, (p) => p.user)
+  @JoinColumn({ name: 'requestId', referencedColumnName: 'id' })
+  request: Promise<Location>
   
   @Column({
     type: 'varchar',
